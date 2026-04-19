@@ -5,8 +5,14 @@
 [ext_resource type="Script" uid="uid://dpfbet6v1xtk0" path="res://player.gd" id="2_h2yge"]
 
 [node name="Main" type="Node2D" unique_id=1899960801]
-position = Vector2(345, 144)
+position = Vector2(312, 181)
 script = ExtResource("1_ig7tw")
+metadata/_edit_vertical_guides_ = [78.0]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=493621030]
+position = Vector2(35, 15)
+offset = Vector2(0, 0.12)
+zoom = Vector2(1.67, 1.67)
 
 [node name="world" type="Node2D" parent="." unique_id=1181615675]
 y_sort_enabled = true
@@ -15,11 +21,6 @@ y_sort_enabled = true
 position = Vector2(31, -63)
 script = ExtResource("2_h2yge")
 main = NodePath("..")
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=493621030]
-position = Vector2(35, 15)
-offset = Vector2(0, 0.12)
-zoom = Vector2(1.67, 1.67)
 
 [node name="Typing" type="Node2D" parent="." unique_id=1240694098]
 script = ExtResource("2_0xm2m")
@@ -30,12 +31,15 @@ offset_top = 34.0
 offset_right = 69.0
 offset_bottom = 63.0
 bbcode_enabled = true
+metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Typing" unique_id=1948771882]
 offset_top = 1.0
 offset_right = 68.0
 offset_bottom = 30.0
+metadata/_edit_use_anchors_ = true
 
 [node name="LineEdit" type="LineEdit" parent="Typing" unique_id=2131855736]
 offset_right = 68.5
 offset_bottom = 31.0
+metadata/_edit_use_anchors_ = true

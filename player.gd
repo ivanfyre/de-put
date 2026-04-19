@@ -1,6 +1,6 @@
 extends Node2D
 @export var main: Node2D
-
+ 
 var hp: int= 50
 
 func closest_enemy():
@@ -18,7 +18,7 @@ func attack():
 	if enemy:
 		enemy.take_dmg(40)
 	print("shoot")
-	
+
 
 func hurt(amount: int):
 	hp -= amount
