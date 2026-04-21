@@ -1,17 +1,17 @@
 extends Node2D
 
 
-var word_list= ["a", "about", "and", "any", "as", "ask", "at", "back", "be", "but", "by", 
+var word_list: Array= ["a", "about", "and", "any", "as", "ask", "at", "back", "be", "but", "by", 
 "can", "come", "do", "down", "end", "few", "find", "for", "go", 
 "group", "have", "he", "help", "home", "house", "how", "I", "if", "in", "into", "it", "large", "last", "late", "lead", "life", "line", "man", "many", "may", "more", "move", "new", "no", "not", "now", "of", "on", "one", "open", "or", "other", "out", "own", "part", "plan", "play", "point", "real", "run", "same", "say", "set", "she", "so", "some", "take", "the", 
 "this", "those", "time", "to", "turn", "up", "use", "want", "we", "what", "who", "with", "work", "you"]
 
 
 
-var word = []
-var current_index = 0 
+var word :Array= []
+var current_index: int = 0 
 
-func _ready():
+func _ready() -> void:
 	generate_words()
 	render_words()
 	$LineEdit.editable = true
@@ -19,29 +19,29 @@ func _ready():
 	$LineEdit.text_changed.connect(highlight)
 	$LineEdit.grab_focus()
 	$RichTextLabel.bbcode_enabled= true
-func generate_words():
+func generate_words() -> void:
 	word.clear()
-	for i in range(5):
+	for i: int in range(5):
 		word.append(word_list.pick_random())
 	current_index= 0	
-func render_words():
-	for i in $HBoxContainer.get_children():
+func render_words() -> void:
+	for i: Label in $HBoxContainer.get_children():
 		i.free()
 	
-	for i in range(word.size()):
-		var libil = Label.new()
+	for i: int in range(word.size()):
+		var libil: Label = Label.new()
 		libil.text = word[i]
 		if i == current_index:
 			libil.modulate = Color.GOLD
 		else:
 			libil.modulate = Color.WHITE
 		$HBoxContainer.add_child(libil)		
-func highlight(_text = " "):
-	var typed = $LineEdit.text 
-	var target = word[current_index]
-	var result = ""
+func highlight(text: String = " ") -> void:
+	var typed: String  = $LineEdit.text 
+	var target: String = word[current_index]
+	var result: String = ""
 	 
-	for i in range(target.length()):
+	for i: int in range(target.length()):
 		if i < typed.length():
 			if i < typed.length() and typed[i] == target[i]:
 				result += "[color=green]" + word[current_index][i] +"[/color]"
@@ -53,15 +53,15 @@ func highlight(_text = " "):
 	$RichTextLabel.text = result
 			
 		
-	for i in range($HBoxContainer.get_child_count()):
-		var libil =$HBoxContainer.get_child(i)
+	for i: int in range($HBoxContainer.get_child_count()):
+		var libil: Label =$HBoxContainer.get_child(i)
 		if i == current_index:
 			libil.modulate= Color.YELLOW
 		else:
 			libil.modulate = Color.WHITE	
 	
 	
-func _input(event):
+func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
 		highlight()
 		if event.keycode == KEY_SPACE:
@@ -71,10 +71,10 @@ func _input(event):
 			get_viewport().set_input_as_handled()
 			highlight()
 
-func check_word():
+func check_word() -> void:
 
 
-	var typed = $LineEdit.text.strip_edges()
+	var typed: String = $LineEdit.text.strip_edges()
 	if current_index>=word.size():
 		return
 			
